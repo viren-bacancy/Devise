@@ -1,0 +1,22 @@
+<%= form_with(model: prac, local: true) do |form| %>
+  <% if prac.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(prac.errors.count, "error") %> prohibited this prac from being saved:</h2>
+
+      <ul>
+      <% prac.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :prac_name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
