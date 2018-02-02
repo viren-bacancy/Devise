@@ -2,7 +2,7 @@ class PracsController < ApplicationController
   before_action :authenticate_user!, only: :new
 
   before_action :set_prac, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
   # GET /pracs
   # GET /pracs.json
   def index
@@ -32,6 +32,7 @@ class PracsController < ApplicationController
       if @prac.save
         format.html { redirect_to @prac, notice: 'Prac was successfully created.' }
         format.json { render :show, status: :created, location: @prac }
+        # UserMailer.welcome_email(current_user).deliver_now
       else
         format.html { render :new }
         format.json { render json: @prac.errors, status: :unprocessable_entity }
